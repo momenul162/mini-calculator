@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import randomId from "react-id-generator";
 import Histories from "./components/Histories";
+import Swal from "sweetalert2";
 
 /**
  * DONE: Hndle user Input field,
@@ -30,7 +31,7 @@ const App = () => {
 
   const handleOperator = (operator) => {
     if (!inputState.a || !inputState.b) {
-      alert("Invalid Input");
+      Swal.fire("Invalid Input");
       return;
     }
     const calculate = new Function(
@@ -54,7 +55,7 @@ const App = () => {
 
   const handleClear = () => {
     setInputState({ ...initialState });
-    setResult(30);
+    setResult(0);
   };
 
   const handleRestore = (history) => {
@@ -68,7 +69,7 @@ const App = () => {
       <div className="px-2 md:w-1/2 mx-auto text-center bg-slate-200 md:px-10 py-10  md:py-20 shadow-lg rounded-lg">
         <h1 className="text-3xl mb-4">
           Hello my dear... <br />
-          <span className="text-purple-600 ">Faria Jannat</span> <br />
+          <span className="text-purple-600">Faria Jannat</span> <br />
           <span className="text-2xl">This is your mini calculator</span>
         </h1>
         <div className="px-20 py-4 rounded-lg bg-white font-bold">{result}</div>
