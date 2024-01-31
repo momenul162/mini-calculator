@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../Buttons/Button";
+import Proptypes from "prop-types";
 
 const Histories = ({ histories, handleRestore, restoredHistory }) => {
   return (
@@ -14,18 +16,22 @@ const Histories = ({ histories, handleRestore, restoredHistory }) => {
             </h3>
             <small>{history?.date?.toLocaleDateString()}</small>
             <br />
-            <button
-              className="btn btn-sm btn-outline bg-green-100 text-black"
+            <Button
+              text="Restore"
               onClick={() => handleRestore(history)}
-              disabled={restoredHistory == history.id}
-            >
-              Restore
-            </button>
+              disabled={restoredHistory !== null && restoredHistory === history.id}
+            />
           </div>
         ))
       )}
     </div>
   );
+};
+
+Histories.prototype = {
+  histories: Proptypes.array.isRequired,
+  handleRestore: Proptypes.func.isRequired,
+  restoredHistory: Proptypes.func.isRequired,
 };
 
 export default Histories;
